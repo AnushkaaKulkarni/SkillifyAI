@@ -73,6 +73,8 @@ export const faceCheck = async (req, res) => {
       attempt.status = "AUTO_SUBMITTED"
       attempt.submittedAt = new Date()
       attempt.isFinalized = true
+      attempt.submitReason = "PROCTOR_VIOLATION"
+      attempt.submissionType = "AUTO"
     }
 
     await attempt.save()

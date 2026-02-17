@@ -21,6 +21,7 @@ import quizResultRoutes from "./routes/quizResultRoutes.js";
 import facultyExamRoutes from "./routes/facultyExamRoutes.js";
 import studentExamRoutes from "./routes/studentExamRoutes.js";
 import examAssignmentRoutes from "./routes/examAssignmentRoutes.js";
+import facultyQuizReviewRoutes from "./routes/facultyQuizReviewRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -67,6 +68,7 @@ app.use("/api/quiz/attempt", quizAttemptRoutes)
 app.use("/api/quiz-result", quizResultRoutes);
 app.use("/api/faculty/exams", facultyExamRoutes);
 app.use("/api/student/exams", studentExamRoutes);
+app.use("/api/faculty", facultyQuizReviewRoutes);
 
 
 // ✅ Server start

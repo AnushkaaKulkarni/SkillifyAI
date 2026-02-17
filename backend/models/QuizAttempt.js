@@ -79,19 +79,23 @@ noFaceSince: {
   default: null,
 },
 
-lastFaceWarningAt: {
-  type: Date,
-  default: null,
-},
+    lastFaceWarningAt: {
+      type: Date,
+      default: null,
+    },
 
-submissionType: {
-  type: String,
-  enum: ["MANUAL", "AUTO", "TIME_UP"],
-},
+    submissionType: {
+      type: String,
+      enum: ["MANUAL", "AUTO", "TIME_UP"],
+    },
+
+    submitReason: {
+      type: String,
+      enum: ["NORMAL", "TIME_UP", "PROCTOR_VIOLATION"],
+    },
   },
   { timestamps: true }
 );
-
 
 
 export default mongoose.model("QuizAttempt", quizAttemptSchema);

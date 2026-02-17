@@ -197,6 +197,8 @@ export const addWarning = async (req, res) => {
       attempt.score = calculateScore(attempt);
       attempt.submittedAt = new Date();
       attempt.isFinalized = true;
+      attempt.submitReason = "PROCTOR_VIOLATION";
+      attempt.submissionType = "AUTO";
     }
 
     await attempt.save();
@@ -235,12 +237,22 @@ export const submitAttempt = async (req, res) => {
       submitReason === "PROCTOR_VIOLATION" ? "AUTO_SUBMITTED" : "SUBMITTED";
     attempt.submittedAt = new Date();
     attempt.isFinalized = true;
+    attempt.submitReason = submitReason;
+
+    // Set submissionType based on submitReason
+    if (submitReason === "TIME_UP") {
+      attempt.submissionType = "TIME_UP";
+    } else if (submitReason === "PROCTOR_VIOLATION") {
+      attempt.submissionType = "AUTO";
+    } else {
+      attempt.submissionType = "MANUAL";
+    }
 
     await attempt.save();
 
     res.json({
       success: true,
-      quizAttemptId: attempt._id, 
+      quizAttemptId: attempt._id,
       score: attempt.score,
       status: attempt.status,
     });

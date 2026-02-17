@@ -168,7 +168,7 @@ const lastFaceEventRef = useRef(0)
 
       answersRef.current = data.questions.map((q: any) => ({
         questionId: q.questionId,
-        selectedOption: null,
+        selectedIndex: null,
       }))
 
       setLoading(false)
@@ -285,7 +285,7 @@ const lastFaceEventRef = useRef(0)
   /* ================= FACE CHECK ================= */
 
   const onFaceFrame = useCallback(
-  async ({ embedding }) => {
+  async ({ embedding }: { embedding: number[] }) => {
     if (!attemptId || isSubmittingRef.current) return
 
     const res = await fetch(
@@ -329,7 +329,7 @@ const lastFaceEventRef = useRef(0)
     copy[currentQuestion] = idx
     setSelectedAnswers(copy)
 
-    answersRef.current[currentQuestion].selectedOption = idx
+    answersRef.current[currentQuestion].selectedIndex = idx
   }
 
   
