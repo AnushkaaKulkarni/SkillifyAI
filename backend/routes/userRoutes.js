@@ -1,0 +1,1 @@
+router.get("/my-faculties", protect, getMyFaculties);
